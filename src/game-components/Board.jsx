@@ -18,11 +18,9 @@ const Board = () => {
 
     changeTurn(!turn);
     setState(tempState);
-    // checkWinner(tempState) ? changeStatus(!gameStatus) : false;
-    if (checkWinner(tempState)) changeStatus(!gameStatus);
   };
 
-  const checkWinner = (currentState) => {
+  const checkWinner = () => {
     const winningPos = [
       [0, 1, 2],
       [3, 4, 5],
@@ -35,24 +33,27 @@ const Board = () => {
     ];
 
     for (let [a, b, c] of winningPos) {
-      if (
-        currentState[a] !== null &&
-        currentState[a] == currentState[b] &&
-        currentState[b] == currentState[c]
-      ) {
-        return true;
+      if (state[a] !== null && state[a] == state[b] && state[b] == state[c]) {
+        return state[a];
       }
     }
     return false;
   };
 
+  const winner = checkWinner();
+
+  const reset = () => {
+    setState(Array(9).fill(null));
+    changeStatus(!gameStatus);
+  };
+
   return (
     <div className="board-container">
-      {gameStatus ? (
+      {winner ? (
         <>
           <div className="result-screen">
-            <h1>Someone won</h1>
-            <button>Play Again!!</button>
+            <h1>Player with '{winner}' won! </h1>
+            <button onClick={reset}>Play Again!!</button>
           </div>
         </>
       ) : (
