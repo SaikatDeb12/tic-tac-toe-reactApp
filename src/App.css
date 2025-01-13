@@ -1,0 +1,21 @@
+.app {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  height: 200px;
+  width: 200px;
+}
